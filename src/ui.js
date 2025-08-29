@@ -13,7 +13,7 @@ function initUI() {
     alarmBtn.parentNode.insertBefore(btn, alarmBtn);
 
     btn.addEventListener("click", () => {
-      alert("Btn Gedrückt");
+      startAction();
     });
   }
 }
