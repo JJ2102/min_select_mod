@@ -6,9 +6,9 @@
 // @author       JJ Baumann
 // @match        https://www.leitstellenspiel.de/*
 // @grant        none
-// @require      https://raw.githubusercontent.com/USERNAME/REPO/main/src/logic.js
-// @require      https://raw.githubusercontent.com/USERNAME/REPO/main/src/ui.js
-// @require      https://raw.githubusercontent.com/USERNAME/REPO/main/src/main.js
+// @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/logic.js
+// @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/ui.js
+// @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/main.js
 // ==/UserScript==
 
 (function () {
