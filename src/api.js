@@ -6,6 +6,7 @@ function getApiData(url) {
       url: url,
       onload: (res) => {
         try {
+          console.log(`${url} geladen...`);
           resolve(JSON.parse(res.responseText));
         } catch (error) {
           reject(error);
