@@ -5,11 +5,8 @@ function getApiData(url) {
       method: "GET",
       url: url,
       onload: (res) => {
-        console.log("Status:", res.status); // Debug
-        console.log("Antwort-Länge:", res.responseText.length); // Debug
         try {
           const data = JSON.parse(res.responseText);
-          console.log("JSON erfolgreich geparsed");
           resolve(data);
         } catch (error) {
           console.error("Parsing-Fehler:", error);
