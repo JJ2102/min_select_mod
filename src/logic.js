@@ -1,9 +1,9 @@
 function startAction() {
-  console.log("1");
+  console.log("2");
 
   getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data) => {
-      console.log(data);
+      console.log(typeof data);
     })
     .catch((error) => {
       console.error("Fehler:", error);
