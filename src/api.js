@@ -7,7 +7,7 @@ async function getApiData(url) {
         try {
           resolve(JSON.parse(res.responseText));
         } catch (error) {
-          reject(e);
+          reject(error);
         }
       },
       onerror: reject,
