@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Mein LSS Mod
 // @namespace    http://tampermonkey.net/
-// @version      0.1.6
+// @version      0.1.7
 // @description  Demo Mod mit Button
 // @author       JJ Baumann
 // @match        https://www.leitstellenspiel.de/*
 // @grant        GM_xmlhttpRequest
+// @connect      leitstellenspiel.de
+// @connect      api.lss-manager.de
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/logic.js
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/ui.js
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/main.js
