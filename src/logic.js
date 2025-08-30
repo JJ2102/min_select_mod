@@ -1,5 +1,5 @@
 function startAction() {
-  getApiDatam("https://www.leitstellenspiel.de/einsaetze.json")
+  getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data) => {
       console.log(data);
     })
