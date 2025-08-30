@@ -11,6 +11,7 @@ function startAction() {
       console.log("Einsätze erfolgreich geladen...");
       const currentOperation = getCurentOperation(data, missionId);
       console.log(currentOperation);
+      alert(`Akktueller Einsatz:\n${currentOperation.name}`);
     })
     .catch((error) => {
       console.error("Fehler:", error);
