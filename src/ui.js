@@ -8,6 +8,7 @@ function initUI() {
 
     const btn = document.createElement("button");
     btn.id = btnID;
+    btn.type = "button";
     btn.textContent = btnContent;
     btn.classList.add("btn", "btn-success");
     alarmBtn.parentNode.insertBefore(btn, alarmBtn);
