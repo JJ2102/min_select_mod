@@ -14,5 +14,6 @@
 
 (function () {
   "use strict";
+  // eslint-disable-next-line
   main(); // startet die Mod
 })();
