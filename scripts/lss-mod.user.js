@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mein LSS Mod
 // @namespace    http://tampermonkey.net/
-// @version      0.2.2
+// @version      0.3.0
 // @description  Demo Mod mit Button
 // @author       JJ
 // @match        https://www.leitstellenspiel.de/*
@@ -22,7 +22,7 @@
     if (typeof main === "function") {
       main();
     } else {
-      console.error("main() nicht gefunden – prüfe deine Module!");
+      console.error("main() nicht gefunden - prüfe deine Module!");
     }
   });
 })();
