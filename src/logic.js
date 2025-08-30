@@ -1,6 +1,4 @@
 function startAction() {
-  console.log("1");
-
   getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data) => {
       console.log(typeof data);
