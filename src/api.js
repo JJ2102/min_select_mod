@@ -8,9 +8,9 @@ function getApiData(url) {
         console.log("Status:", res.status); // Debug
         console.log("Antwort-Länge:", res.responseText.length); // Debug
         try {
-          const json = JSON.parse(res.responseText);
+          const data = JSON.parse(res.responseText);
           console.log("JSON erfolgreich geparsed");
-          resolve(json);
+          resolve(data);
         } catch (error) {
           console.error("Parsing-Fehler:", error);
           reject(error);
