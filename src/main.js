@@ -3,3 +3,5 @@ function main() {
   initLogic();
   initUI();
 }
+
+window.main = main;
