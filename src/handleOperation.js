@@ -7,10 +7,18 @@ function handleOperation(op) {
     return alert("Keine Anforderungen vorhanden.");
   }
 
-  msg = Object.entries(requirements).map(([key, amount]) => {
-    return `${key}: ${amount}`;
-  });
-  alert("Benötigt:\n" + msg.join("\n"));
+  getApiData("https://api.lss-manager.de/de_DE/einsaetze")
+    .then((data) => {
+      console.log(data.requirements);
+
+      msg = Object.entries(requirements).map(([key, amount]) => {
+        return `${key}: ${amount}`;
+      });
+      alert("Benötigt:\n" + msg.join("\n"));
+    })
+    .catch((error) => {
+      console.error("Fehler beim holen der fahrzeug typen:", error);
+    });
 }
 
 /** ======= Helper ======= */

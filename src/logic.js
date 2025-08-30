@@ -12,7 +12,7 @@ function startAction() {
       handleOperation(getCurentOperation(data, missionId));
     })
     .catch((error) => {
-      console.error("Fehler:", error);
+      console.error("Fehler beim holen der Einsätze:", error);
     })
     .finally(() => {
       changeBtnText();
