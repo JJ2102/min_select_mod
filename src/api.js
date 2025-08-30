@@ -5,7 +5,7 @@ async function getApiData(url) {
       throw new Error(`HTTP Error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("APIError: ", error);
+    console.error(`API-Error: ${error}`);
     throw error;
   }
 }
