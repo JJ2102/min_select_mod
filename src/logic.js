@@ -2,7 +2,7 @@ function startAction() {
   getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data) => {
       alert("API erfolgreich");
-      console.log(typeof data);
+      console.log(data);
     })
     .catch((error) => {
       console.error("Fehler:", error);

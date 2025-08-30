@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mein LSS Mod
 // @namespace    http://tampermonkey.net/
-// @version      0.1.3
+// @version      0.1.4
 // @description  Demo Mod mit Button
 // @author       JJ Baumann
 // @match        https://www.leitstellenspiel.de/*
@@ -16,6 +16,5 @@
 
 (function () {
   "use strict";
-  // eslint-disable-next-line
-  main(); // startet die Mod
+  window.addEventListener("load", main);
 })();
