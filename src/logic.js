@@ -9,9 +9,7 @@ function startAction() {
   getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data /* Alle Einsätze */) => {
       console.log("Einsätze erfolgreich geladen...");
-      const currentOperation = getCurentOperation(data, missionId);
-      console.log(currentOperation);
-      alert(`Akktueller Einsatz:\n${currentOperation.name}`);
+      handleOperation(getCurentOperation(data, missionId));
     })
     .catch((error) => {
       console.error("Fehler:", error);
