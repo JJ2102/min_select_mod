@@ -8,11 +8,15 @@ function handleOperation(op) {
   }
 
   getApiData("https://api.lss-manager.de/de_DE/einsaetze")
-    .then((data) => {
-      console.log(data.requirements);
+    .then((data /* firetruck -> Löschfahrzeug */) => {
+      requirementsAsVehicle = getVehiclesFromTyp(
+        requirements,
+        data.requirements
+      );
 
-      msg = Object.entries(requirements).map(([key, amount]) => {
-        return `${key}: ${amount}`;
+      const msg = requirementsAsVehicle.map((obj) => {
+        const [typ, amount] = Object.entries(obj)[0];
+        return `${typ}: ${amount}`;
       });
       alert("Benötigt:\n" + msg.join("\n"));
     })
@@ -33,4 +37,11 @@ function handleAdditional(additional, requirements) {
   }
 
   return requirements;
+}
+
+function getVehiclesFromTyp(requirements, vehicleMap) {
+  return Object.entries(requirements).map(([typ, amount]) => {
+    const vehicle = vehicleMap[typ] || typ;
+    return { [vehicle]: amount };
+  });
 }
