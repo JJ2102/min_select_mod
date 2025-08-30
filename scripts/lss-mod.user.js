@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1.7
 // @description  Demo Mod mit Button
-// @author       JJ Baumann
+// @author       JJ
 // @match        https://www.leitstellenspiel.de/*
 // @grant        GM_xmlhttpRequest
 // @connect      leitstellenspiel.de
