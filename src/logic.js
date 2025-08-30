@@ -1,6 +1,11 @@
 function startAction() {
-  console.log("Button wurde geklickt!");
-  alert("Mod funktioniert!");
+  getApiDatam("https://www.leitstellenspiel.de/einsaetze.json")
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Fehler:", error);
+    });
 }
 
 function initLogic() {
