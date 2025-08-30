@@ -5,14 +5,21 @@ function getApiData(url) {
       method: "GET",
       url: url,
       onload: (res) => {
+        console.log("Status:", res.status); // Debug
+        console.log("Antwort-Länge:", res.responseText.length); // Debug
         try {
-          console.log(`${url} geladen...`);
-          resolve(JSON.parse(res.responseText));
+          const json = JSON.parse(res.responseText);
+          console.log("JSON erfolgreich geparsed");
+          resolve(json);
         } catch (error) {
+          console.error("Parsing-Fehler:", error);
           reject(error);
         }
       },
-      onerror: reject,
+      onerror: (err) => {
+        console.error("Request-Fehler:", err);
+        reject(err);
+      },
     });
   });
 }
