@@ -1,12 +1,14 @@
+let btn;
+const btnContent = "Select min";
+
 function initUI() {
   const btnID = "min_btn";
-  const btnContent = "Select min";
   const alarmBtn = document.getElementById("alert_btn");
 
   if (alarmBtn) {
     if (document.getElementById(btnID)) return;
 
-    const btn = document.createElement("button");
+    btn = document.createElement("button");
     btn.id = btnID;
     btn.type = "button";
     btn.textContent = btnContent;
@@ -17,4 +19,9 @@ function initUI() {
       startAction();
     });
   }
+}
+
+function changeBtnText(text) {
+  if (!btn) return;
+  btn.textContent = text || btnContent;
 }
