@@ -1,4 +1,6 @@
 function startAction() {
+  changeBtnText("Lade...", true);
+
   getApiData("https://www.leitstellenspiel.de/einsaetze.json")
     .then((data) => {
       console.log("Einsätze erfolgreich geladen:");
@@ -6,6 +8,9 @@ function startAction() {
     })
     .catch((error) => {
       console.error("Fehler:", error);
+    })
+    .finally(() => {
+      changeBtnText();
     });
 }
 

@@ -21,7 +21,8 @@ function initUI() {
   }
 }
 
-function changeBtnText(text) {
+function changeBtnText(text, disabled) {
   if (!btn) return;
   btn.textContent = text || btnContent;
+  btn.disabled = disabled || false;
 }
