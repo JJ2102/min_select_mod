@@ -1,4 +1,5 @@
 async function getApiData(url) {
+  console.log(`API-Call an "${url}"`);
   return new Promise((resolve, reject) => {
     GM_xmlhttpRequest({
       method: "Get",
