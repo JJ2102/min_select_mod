@@ -1,11 +1,16 @@
 async function getApiData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP Error! status: ${response.status}`);
-    }
-  } catch (error) {
-    console.error(`API-Error: ${error}`);
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    GM_xmlhttpRequest({
+      method: "Get",
+      url: url,
+      onload: (res) => {
+        try {
+          resolve(JSON.parse(res.responseText));
+        } catch (error) {
+          reject(e);
+        }
+      },
+      onerror: reject,
+    });
+  });
 }
