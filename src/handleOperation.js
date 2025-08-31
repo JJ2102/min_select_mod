@@ -4,9 +4,12 @@ const IGNORED_REQUIREMENTS = [
 ];
 
 function handleOperation(op) {
+  let additionalToId;
+  let requirementsToId;
+
   try {
-    const additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
-    const requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
+    additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
+    requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
   } catch (error) {
     console.error("Fehler beim laden der to id dateien", error);
   }
