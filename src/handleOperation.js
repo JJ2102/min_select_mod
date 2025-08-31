@@ -4,6 +4,15 @@ const IGNORED_REQUIREMENTS = [
 ];
 
 function handleOperation(op) {
+  try {
+    const additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
+    const requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
+  } catch (error) {
+    console.error("Fehler beim laden der to id dateien", error);
+  }
+
+  console.log(additionalToId);
+
   if (!op) return alert("Kein passender Einsatz gefunden");
 
   let requirements = handleAdditional(op.additional, op.requirements || {});
@@ -21,11 +30,6 @@ function handleOperation(op) {
 function selectMinRequiredVehicles(requirements, chances) {
   const missing = [];
   const unmapped = [];
-
-  const additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
-  const requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
-
-  console.log(additionalToId);
 
   Object.entries(requirements).forEach(([requirement, amount]) => {
     if (IGNORED_REQUIREMENTS.includes(requirement)) {
