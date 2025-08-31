@@ -7,22 +7,10 @@ function handleOperation(op) {
     return alert("Keine Anforderungen vorhanden.");
   }
 
-  getApiData("https://api.lss-manager.de/de_DE/einsaetze")
-    .then((data /* firetruck -> Löschfahrzeug */) => {
-      requirementsAsVehicle = getVehiclesFromTyp(
-        requirements,
-        data.requirements
-      );
-
-      const msg = requirementsAsVehicle.map((obj) => {
-        const [typ, amount] = Object.entries(obj)[0];
-        return `${typ}: ${amount}`;
-      });
-      alert("Benötigt:\n" + msg.join("\n"));
-    })
-    .catch((error) => {
-      console.error("Fehler beim holen der fahrzeug typen:", error);
-    });
+  const msg = Object.entries(requirements).map(([typ, amount]) => {
+    return `${typ}: ${amount}`;
+  });
+  alert("Benötigt:\n" + msg.join("\n"));
 }
 
 /** ======= Helper ======= */
@@ -37,11 +25,4 @@ function handleAdditional(additional, requirements) {
   }
 
   return requirements;
-}
-
-function getVehiclesFromTyp(requirements, vehicleMap) {
-  return Object.entries(requirements).map(([typ, amount]) => {
-    const vehicle = vehicleMap[typ] || typ;
-    return { [vehicle]: amount };
-  });
 }
