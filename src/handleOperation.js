@@ -14,8 +14,6 @@ function handleOperation(op) {
     console.error("Fehler beim laden der to id dateien", error);
   }
 
-  console.log(additionalToId);
-
   if (!op) return alert("Kein passender Einsatz gefunden");
 
   let requirements = handleAdditional(op.additional, op.requirements || {});
@@ -26,11 +24,7 @@ function handleOperation(op) {
 
   selectMinRequiredVehicles(requirements, op.chances);
 
-  const msg = Object.entries(requirements).map(([typ, amount]) => {
-    return `${typ}: ${amount}`;
-  });
   console.log(requirements);
-  alert("Benötigt:\n" + msg.join("\n"));
 }
 
 function selectMinRequiredVehicles(requirements, chances) {
