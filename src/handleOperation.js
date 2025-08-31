@@ -3,10 +3,10 @@ const IGNORED_REQUIREMENTS = [
   "foam_needed", // späteres feature
 ];
 
-function handleOperation(op) {
-  let additionalToId;
-  let requirementsToId;
+let additionalToId;
+let requirementsToId;
 
+function handleOperation(op) {
   try {
     additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
     requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
@@ -24,9 +24,12 @@ function handleOperation(op) {
     return alert("Keine Anforderungen vorhanden.");
   }
 
+  selectMinRequiredVehicles(requirements, op.chances);
+
   const msg = Object.entries(requirements).map(([typ, amount]) => {
     return `${typ}: ${amount}`;
   });
+  console.log(requirements);
   alert("Benötigt:\n" + msg.join("\n"));
 }
 
@@ -40,7 +43,44 @@ function selectMinRequiredVehicles(requirements, chances) {
     }
 
     if (requirement in chances) return;
+
+    let ids = requirementsToId[requirement] || additionalToId[requirement];
+    if (!ids) {
+      unmapped.push(requirement);
+      return;
+    }
+
+    let selected = 0;
+    for (const id of ids) {
+      const boxes = document.querySelectorAll(
+        `input.vehicle_checkbox[vehicle_type_id="${id}"]`
+      );
+
+      for (const box of boxes) {
+        if (!box.checked && selected < amount) {
+          box.click();
+          selected++;
+        }
+      }
+
+      if (selected >= amount) break;
+    }
+
+    if (selected < amount) {
+      missing.push({ requirement, missing: amount - selected });
+    }
   });
+
+  if (unmapped.length) {
+    alert("Kein Mapping für: \n" + unmapped.join("\n"));
+  }
+
+  if (missing.length) {
+    const msg = missing.map(({ requirement, missing }) => {
+      return `${requirement}: ${missing}`;
+    });
+    alert("Nicht genügend Fahrzeuge:\n" + msg.join("\n"));
+  }
 }
 
 /** ======= Helper ======= */
