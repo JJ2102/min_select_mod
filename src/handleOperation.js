@@ -39,7 +39,7 @@ function selectMinRequiredVehicles(requirements, chances) {
     if (requirement in chances) return;
 
     let ids = requirementsToId[requirement] || additionalToId[requirement];
-    if (!ids) {
+    if (!ids || ids.length === 0) {
       unmapped.push(requirement);
       return;
     }
