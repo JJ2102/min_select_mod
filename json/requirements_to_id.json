@@ -50,7 +50,7 @@
     "oneof_police_patrol_or_motorcycle": [],
     "personnel_educations": [],
     "platform_trucks": [2],
-    "police_cars": [],
+    "police_cars": [32],
     "police_helicopters": [],
     "police_horse": [],
     "police_motorcycle": [],
