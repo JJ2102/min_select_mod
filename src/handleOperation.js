@@ -1,3 +1,8 @@
+const IGNORED_REQUIREMENTS = [
+  "water_needed", // späteres feature
+  "foam_needed", // späteres feature
+];
+
 function handleOperation(op) {
   if (!op) return alert("Kein passender Einsatz gefunden");
 
@@ -13,6 +18,24 @@ function handleOperation(op) {
   alert("Benötigt:\n" + msg.join("\n"));
 }
 
+function selectMinRequiredVehicles(requirements, chances) {
+  const missing = [];
+  const unmapped = [];
+
+  const additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
+  const requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
+
+  console.log(additionalToId);
+
+  Object.entries(requirements).forEach(([requirement, amount]) => {
+    if (IGNORED_REQUIREMENTS.includes(requirement)) {
+      return console.log(`Ignoriere: ${requirement}`);
+    }
+
+    if (requirement in chances) return;
+  });
+}
+
 /** ======= Helper ======= */
 // überprüft die additionals
 function handleAdditional(additional, requirements) {
@@ -20,8 +43,8 @@ function handleAdditional(additional, requirements) {
 
   // fügt bei bedarf die benötigte anzahl an rtws den requirements hinzu
   if (additional.possible_patient_min > 0) {
-    requirements.ambulances =
-      (requirements.ambulances || 0) + additional.possible_patient_min;
+    requirements.patient =
+      (requirements.patient || 0) + additional.possible_patient_min;
   }
 
   return requirements;
