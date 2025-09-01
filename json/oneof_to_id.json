@@ -2,7 +2,7 @@
     "oneof_coastal_rescue_boat_or_boat_large": [],
     "oneof_fire_engine_or_rescue": [],
     "oneof_fire_engine_or_rescue_or_oil_equipment": [],
-    "oneof_police_patrol_or_civil_patrol": [],
-    "oneof_police_patrol_or_civil_patrol_or_motorcycle": [],
-    "oneof_police_patrol_or_motorcycle": []
+    "oneof_police_patrol_or_civil_patrol": [32, 98],
+    "oneof_police_patrol_or_civil_patrol_or_motorcycle": [32, 95, 98],
+    "oneof_police_patrol_or_motorcycle": [32, 95]
 }
