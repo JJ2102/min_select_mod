@@ -24,32 +24,26 @@ function handleOperation(op) {
     return alert("Keine Anforderungen vorhanden.");
   }
 
-  selectMinRequiredVehicles(requirements, op.chances);
+  const { ids, unmapped } = getRequiredIds(requirements, op.chances);
+
+  if (unmapped.length) {
+    alert("Kein Mapping für: \n" + unmapped.join("\n"));
+  }
+
+  selectMinRequiredVehicles(ids);
 
   console.log(requirements);
 }
 
-function selectMinRequiredVehicles(requirements, chances) {
+function selectMinRequiredVehicles(ids) {
   const missing = [];
-  const unmapped = [];
 
-  Object.entries(requirements).forEach(([requirement, amount]) => {
-    if (IGNORED_REQUIREMENTS.includes(requirement)) {
-      return console.log(`Ignoriere: ${requirement}`);
-    }
-
-    if (requirement in chances) return;
-
-    let ids = requirementsToId[requirement] || additionalToId[requirement];
-    if (!ids || ids.length === 0) {
-      unmapped.push(requirement);
-      return;
-    }
-
-    console.log(ids);
-
+  // Iteriren durch die ids Map
+  for (const [idArray, amount] of ids.entries()) {
     let selected = 0;
-    for (const id of ids) {
+
+    // Iteriren durch die einzelenen ids
+    for (const id of idArray) {
       const boxes = document.querySelectorAll(
         `input.vehicle_checkbox[vehicle_type_id="${id}"]`
       );
@@ -65,17 +59,13 @@ function selectMinRequiredVehicles(requirements, chances) {
     }
 
     if (selected < amount) {
-      missing.push({ requirement, missing: amount - selected });
+      missing.push({ required: idArray.join(","), missing: amount - selected });
     }
-  });
-
-  if (unmapped.length) {
-    alert("Kein Mapping für: \n" + unmapped.join("\n"));
   }
 
   if (missing.length) {
-    const msg = missing.map(({ requirement, missing }) => {
-      return `${requirement}: ${missing}`;
+    const msg = missing.map(({ required, missing }) => {
+      return `${required}: ${missing}`;
     });
     alert("Nicht genügend Fahrzeuge:\n" + msg.join("\n"));
   }
@@ -93,4 +83,42 @@ function handleAdditional(additional, requirements) {
   }
 
   return requirements;
+}
+
+// Holle die benötigten ids aus den json datein und returne sie
+function getRequiredIds(requirements, chances) {
+  const unmapped = [];
+  /**
+   * ids = {
+   *  [0, 1, 2, 3]: 3,
+   *  [31, 23, 43]: 5,
+   *  [requiered IDs]: amount // requierment
+   * }
+   */
+  let ids = new Map();
+
+  // Iteriren durch requirements
+  Object.entries(requirements).forEach(([requirement, amount]) => {
+    // Ignorieren ausgewählter requirements
+    if (IGNORED_REQUIREMENTS.includes(requirement)) {
+      return console.log(`Ignoriere: ${requirement}`);
+    }
+
+    // überspringen nicht zu 100% benötigter requirements
+    if (requirement in chances) return;
+
+    // Holen der benötigten ids aus den JSON dateien
+    const requiredIDs =
+      requirementsToId[requirement] || additionalToId[requirement];
+
+    if (!requiredIDs || requiredIDs.length === 0) {
+      unmapped.push(requirement);
+      return;
+    }
+
+    // einfügen des requierment in ids
+    ids.set(requiredIDs, amount);
+  });
+
+  return { ids, unmapped };
 }
