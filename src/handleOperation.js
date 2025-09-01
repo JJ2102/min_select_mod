@@ -5,11 +5,13 @@ const IGNORED_REQUIREMENTS = [
 
 let additionalToId;
 let requirementsToId;
+let oneofToId;
 
 function handleOperation(op) {
   try {
     additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
     requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
+    oneofToId = JSON.parse(GM_getResourceText("oneofToId"));
   } catch (error) {
     console.error("Fehler beim laden der to id dateien", error);
   }
@@ -43,6 +45,8 @@ function selectMinRequiredVehicles(requirements, chances) {
       unmapped.push(requirement);
       return;
     }
+
+    console.log(ids);
 
     let selected = 0;
     for (const id of ids) {
