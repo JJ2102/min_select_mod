@@ -6,12 +6,14 @@ const IGNORED_REQUIREMENTS = [
 let additionalToId;
 let requirementsToId;
 let oneofToId;
+let VehicleId;
 
 function handleOperation(op) {
   try {
     additionalToId = JSON.parse(GM_getResourceText("additionalToId"));
     requirementsToId = JSON.parse(GM_getResourceText("requirementsToId"));
     oneofToId = JSON.parse(GM_getResourceText("oneofToId"));
+    VehicleId = JSON.parse(GM_getResourceText("VehicleId"));
   } catch (error) {
     console.error("Fehler beim laden der to id dateien", error);
   }
@@ -59,7 +61,16 @@ function selectMinRequiredVehicles(ids) {
     }
 
     if (selected < amount) {
-      missing.push({ required: idArray.join(","), missing: amount - selected });
+      const missingVehicles = [];
+
+      for (const id of idArray) {
+        missingVehicles.push(VehicleId[id]);
+      }
+
+      missing.push({
+        required: missingVehicles.join(","),
+        missing: amount - selected,
+      });
     }
   }
 

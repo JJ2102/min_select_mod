@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mein LSS Mod
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      1.0.4
 // @description  Demo Mod mit Button
 // @author       JJ
 // @match        https://www.leitstellenspiel.de/*
@@ -12,6 +12,7 @@
 // @resource     additionalToId https://raw.githubusercontent.com/JJ2102/min_select_mod/main/json/additional_to_id.json
 // @resource     requirementsToId https://raw.githubusercontent.com/JJ2102/min_select_mod/main/json/requirements_to_id.json
 // @resource     onofToId https://raw.githubusercontent.com/JJ2102/min_select_mod/main/json/oneof_to_id.json
+// @resource     VehicleId https://raw.githubusercontent.com/JJ2102/min_select_mod/main/json/Vehicle_id.json
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/main.js
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/logic.js
 // @require      https://raw.githubusercontent.com/JJ2102/min_select_mod/main/src/ui.js
