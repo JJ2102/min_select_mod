@@ -64,7 +64,7 @@ function selectMinRequiredVehicles(ids) {
       const missingVehicles = [];
 
       for (const id of idArray) {
-        missingVehicles.push(VehicleId[id]);
+        missingVehicles.push(VehicleId[id] || id);
       }
 
       missing.push({
