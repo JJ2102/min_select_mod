@@ -21,6 +21,7 @@ function handleOperation(op) {
   if (!op) return alert("Kein passender Einsatz gefunden");
 
   let requirements = handleAdditional(op.additional, op.requirements || {});
+  requirements = normalizeRequirements(requirements);
 
   if (Object.keys(requirements).length === 0) {
     return alert("Keine Anforderungen vorhanden.");
@@ -132,4 +133,34 @@ function getRequiredIds(requirements, chances) {
   });
 
   return { ids, unmapped };
+}
+
+function normalizeRequirements(requirements) {
+  const newReqs = { ...requirements }; // Kopie
+
+  // Iteriere durch alle festen Anforderungen
+  for (const [fixedReq, fixedAmount] of Object.entries(requirements)) {
+    if (fixedAmount <= 0) continue;
+
+    // Prüfe alle OneOf-Anforderungen
+    for (const [oneofKey, oneofIds] of Object.entries(oneofToId)) {
+      if (!(oneofKey in requirements)) continue; // falls Requirement gar nicht gebraucht wird
+
+      // IDs des festen Requirements holen
+      const fixedIds = requirementsToId[fixedReq] || additionalToId[fixedReq];
+      if (!fixedIds) continue;
+
+      // Prüfen, ob eine ID des fixedReq in der OneOf-Gruppe vorkommt
+      if (fixedIds.some((id) => oneofIds.includes(id))) {
+        // OneOf-Anforderung um den festen Anteil reduzieren (mind. 0)
+        newReqs[oneofKey] = Math.max(0, newReqs[oneofKey] - fixedAmount);
+
+        console.log(
+          `[normalizeRequirements] Reduziere ${oneofKey} um ${fixedAmount}, wegen ${fixedReq}`
+        );
+      }
+    }
+  }
+
+  return newReqs;
 }
