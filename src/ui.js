@@ -16,6 +16,7 @@ function initUI() {
   searchBtn = document.getElementById("show_search_occupied");
 
   if (searchBtn) {
+    console.log("Zeige Suchleiste");
     searchBtn.click();
   }
 
