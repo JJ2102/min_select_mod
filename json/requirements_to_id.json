@@ -21,7 +21,7 @@
     "grukw": [],
     "gw_san": [],
     "gw_werkfeuerwehr": [],
-    "gwmess": [],
+    "gwmess": [12],
     "gwoil": [10],
     "hazmat_dekon": [],
     "hazmat_vehicles": [],
