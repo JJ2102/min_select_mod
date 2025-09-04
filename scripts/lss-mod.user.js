@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mein LSS Mod
 // @namespace    http://tampermonkey.net/
-// @version      1.0.6
+// @version      1.0.7
 // @description  Demo Mod mit Button
 // @author       JJ
 // @match        https://www.leitstellenspiel.de/*

@@ -2,24 +2,6 @@ let btn;
 const btnContent = "Select min";
 
 function initUI() {
-  try {
-    // show search-bar
-    searchBtn = document.getElementById("show_search_occupied");
-
-    if (searchBtn) {
-      searchBtn.click();
-    }
-  } catch (error) {
-    console.warn("Fehler beim anzeigen der search bar");
-  }
-  // show search-bar
-  searchBtn = document.getElementById("show_search_occupied");
-
-  if (searchBtn) {
-    console.log("Zeige Suchleiste");
-    searchBtn.click();
-  }
-
   // add Button
   const btnID = "min_btn";
   const alarmBtn = document.getElementById("alert_btn");
